@@ -64,7 +64,7 @@ public class AccountController : ControllerBase
 			.WithdrawalAsync(new WithdrawalTransactionRequest()
 			{
 				Date = DateTime.Now,
-				Quantity = quantity * -1,
+				Quantity = quantity,
 				UserId = currentUser.Id
 			});
 		if (!result.Success)
