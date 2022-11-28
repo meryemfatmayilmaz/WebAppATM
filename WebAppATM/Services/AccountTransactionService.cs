@@ -18,7 +18,9 @@ namespace WebAppATM.Services
 
 		public async Task<WithdrawalTransactionResponse> WithdrawalAsync(WithdrawalTransactionRequest request)
 		{
-			if (await _accountTransactionRepository.SumOfQuantityAsync(request.UserId) < 0.0m)
+		
+			var total = await _accountTransactionRepository.SumOfQuantityAsync(request.UserId);
+			if (request.Quantity > total)
 			{
 				return new WithdrawalTransactionResponse(false, "Yetersiz Bakiye");
 			}
