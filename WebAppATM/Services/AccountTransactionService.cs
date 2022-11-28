@@ -34,7 +34,7 @@ namespace WebAppATM.Services
 				request.TransactionNumber = _accountTransactionRepository.GetMaxTransactionNumber();
 			}
 			await _accountTransactionRepository.CreateAccountTransactionAsync(
-				new AccountTransaction(request.UserId, request.Quantity, request.Date));
+				new AccountTransaction(request.UserId, request.Quantity*-1, request.Date));
 			await _unitOfWork.CompleteAsync();
 			return new WithdrawalTransactionResponse(true, "İşlem Başarılı");
 		}
